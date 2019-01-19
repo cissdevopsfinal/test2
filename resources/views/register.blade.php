@@ -90,7 +90,7 @@
 
                 <script type="text/javascript">
                     $(document).ready(function(){
-                        var postURL = "<?php echo url('addmore'); ?>";
+                        var postURL = "<?php echo url('/addmore/'); ?>";
                         var i=1;
 
 
