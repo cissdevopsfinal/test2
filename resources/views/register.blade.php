@@ -18,7 +18,7 @@
 
                         <div class="form-group">
 
-                            <form name="add_name" id="add_name" action="{{url('/addmorepost/')}}" method="post" >
+                            <form name="add_name" id="add_name" action="https://vlsevents.com/addmorepost" method="post" >
 
                                 @csrf
                                 {{ csrf_field() }}
