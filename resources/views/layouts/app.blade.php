@@ -56,8 +56,8 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ url('payment') }}">Payment Approval</a>
-                                    <a class="dropdown-item" href="{{ url('users') }}">Approval Guests</a>
+                                    <a class="dropdown-item" href="https://vlsevents.com/payment">Payment Approval</a>
+                                    <a class="dropdown-item" href="https://vlsevents.com/users">Approval Guests</a>
 
 
 
