@@ -12,16 +12,21 @@ use App\Mail\SendMailable;
 use LaravelQRCode\Facades\QRCode;
 use Swift_Attachment;
 
-class paymentController extends Controller
+class reportController extends Controller
 {
-
-
-    public $name;
-    public function index(){
-
-        $users_event = users_event::where('ticketState','=','Accepted')->where('Paid','=','0')->get()->toArray();
-        return view('accepted', compact('users_event'));
+    public function index()
+    {
+        $users_event = users_event::where('id','>','0')->get()->toArray();
+        $pending= users_event::where('ticketState','=','Pending')->count();
+        $accepted= users_event::where('ticketState','=','Accepted')->count();
+        $rejected= users_event::where('ticketState','=','Rejected')->count();
+        $invited= users_event::where('ticketState','=','Invited')->count();
+        $total = users_event::where('ticketState','=','Paid')->sum('Paid');
+        $lounges=users_event::where('host','=','0')->where('optthree','=','Lounge')->count();
+        $hightables=users_event::where('host','=','0')->where('optthree','=','High-Table')->count();
+        return view('report', compact('users_event','pending','accepted','rejected','invited','total','lounges','hightables'));
     }
+    ////////////////////////////////////////////////////LESA HAYTML
     public function edit($id)
     {
         $users_event = users_event::find($id);
@@ -39,14 +44,10 @@ class paymentController extends Controller
 
 
             });
-            $priceID=users_event::find($id)->Price;
-            $Bonus=users_event::find($id)->Bonus;
-            $currentPrice=pricing::findprice($priceID);
-            $Total=$currentPrice+$Bonus;
             File::delete("".$token.".png");
             DB::table('users_event')
                 ->where('token', $token)
-                ->update(['Paid' => $Total,'ticketState'=>'Paid']);
+                ->update(['ticketState' => "Invited"]);
             return redirect()->back()->with('success', 'QR Code Sent');
 
 
@@ -54,4 +55,5 @@ class paymentController extends Controller
 
 
     }
+
 }

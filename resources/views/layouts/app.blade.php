@@ -7,24 +7,24 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Event Management</title>
+    <title>Venture Lifestyle Dashboard</title>
 
     <!-- Scripts -->
-    <script src="https://vlsevents.com/js/app.js" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Styles -->
-    <link href="https://vlsevents.com/css/app.css" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Event Managment
+                    Venture Lifestyle Dashboard
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -51,18 +51,20 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="https://vlsevents.com/logout"
+
+                                    <a class="dropdown-item" href="{{ url('payment') }}">Payment</a>
+                                    <a class="dropdown-item" href="{{ url('users') }}">Guests</a>
+                                    <a class="dropdown-item" style="color: #1f6fb2;font-weight: bold" href="{{ url('report') }}">Report</a>
+                                    <a class="dropdown-item" style="color: red;" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Logout
                                     </a>
-                                    <a class="dropdown-item" href="https://vlsevents.com/payment">Payment Approval</a>
-                                    <a class="dropdown-item" href="https://vlsevents.com/users">Approval Guests</a>
 
 
 
 
-                                    <form id="logout-form" action="https://vlsevents.com/logout" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
@@ -78,4 +80,5 @@
         </main>
     </div>
 </body>
+
 </html>

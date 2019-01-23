@@ -18,7 +18,7 @@ class CreateUsersEventTable extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string('phone');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('gender');
             $table->integer('age');
             $table->string('link');
@@ -27,10 +27,11 @@ class CreateUsersEventTable extends Migration
             $table->string('opttwo');
             $table->string('optthree');
             $table->integer('Price');
+            $table->integer('Bonus');
             $table->integer('host');
             $table->string('userstate')->default('out');
-            $table->boolean('Accepted')->default('0');
-            $table->boolean('Paid')->default('0');
+            $table->string('ticketState')->default('Pending');
+            $table->integer('Paid')->default('0');
 
 
 

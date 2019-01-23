@@ -1,2 +1,2 @@
-<h5>Your request has been approved. Please proceed with the payment. In case of online payment – please proceed with the online process via credit card. https://goo.gl/forms/PPdmQJKJf62tUcIg1 For cash payment – please head to our Venture Lifestyle office at  https://goo.gl/maps/BT3KwYDai822 from 11 am – 6 pm (Fridays are off)</h5>
-<h5>Event Admin Support</h5>
+<h3>Your reservation has been confirmed. Please proceed with the payment at our office, from Saturday - Thursday from 11am till 5pm, or Online at the link https://goo.gl/forms/PPdmQJKJf62tUcIg1. Please make sure you provide all the reservation names, mobile numbers, and emails.</h3>
+<h4>Thank you, Venture Lifestyle.</h4>

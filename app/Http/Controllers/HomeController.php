@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\users_event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -48,7 +49,7 @@ class HomeController extends Controller
             $rules["phone.{$key}"] = 'required';
         }
         foreach($request->input('email') as $key => $value) {
-            $rules["email.{$key}"] = 'required';
+            $rules["email.{$key}"] = 'unique:users_event,email,required';
         }
         foreach($request->input('gender') as $key => $value) {
             $rules["gender.{$key}"] = 'required';
@@ -81,14 +82,30 @@ class HomeController extends Controller
         if ($validator->passes()) {
             $hostID=0;
             $flag=0;
+            $Bonus=0;
             $i=0;
             foreach($request->input('fname') as $value) {
                 $token = str_random(60);
-                $data=users_event::create(['fname'=>$request['fname'][$i],'lname'=>$request['lname'][$i],'phone'=>$request['phone'][$i],'email'=>$request['email'][$i],'gender'=>$request['gender'][$i],'age'=>$request['age'][$i],'link'=>$request['link'][$i],'optone'=>$request['optone'][0],'opttwo'=>$request['opttwo'][0],'optthree'=>$request['optthree'][0],'price'=>$request['price'][0],'host'=>$hostID,'token'=>$token]);
+                $email=$request['email'];
+                if($hostID==0){
+                    if($request['optthree'][0]=='High-Table'){
+                        $Bonus=3000;
+                    }
+                    if($request['optthree'][0]=='Lounge'){
+                        $Bonus=5000;
+                    }
+                }
+                $data=users_event::create(['fname'=>$request['fname'][$i],'lname'=>$request['lname'][$i],'phone'=>$request['phone'][$i],'email'=>$request['email'][$i],'gender'=>$request['gender'][$i],'age'=>$request['age'][$i],'link'=>$request['link'][$i],'optone'=>$request['optone'][0],'opttwo'=>$request['opttwo'][0],'optthree'=>$request['optthree'][0],'price'=>$request['price'][0],'host'=>$hostID,'token'=>$token,'Bonus'=>$Bonus]);
                 $i++;
+                Mail::send(['html' => 'pendingmail'], ['name', 'Gouna Event'], function ($message) use ($email) {
+
+                    $message->to($email)->subject('Your reservation is pending');
+                    $message->from('cissdevops@gmail.com');
+                });
                 if($flag==0){
                     $hostID=$data->id;
                     $flag=1;
+                    $Bonus=0;
                 }
             }
 

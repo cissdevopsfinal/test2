@@ -1,1 +1,2 @@
-<h5>This is a payment confirmation message for your reservation.</h5>
+<h3>The payment for your reservation at the Sun/Sea/Sound event has been confirmed. Please note that you will need to show your QR code at the entrance.</h3>
+<h4>Thank you, Venture Lifestyle.</h4>

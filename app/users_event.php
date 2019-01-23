@@ -21,6 +21,7 @@ class users_event extends Model
         'price',
         'host',
         'token',
+        'Bonus',
 ];
 
 }

@@ -1,3 +1,2 @@
-<h3>Dear Guest,</h3>
-<h5>Unfortunately, your request to join our event has been rejected.</h5>
-<h5>Event Admin Support</h5>
+<h3>Your reservation has been denied. For further information please call 01555552596 .</h3>
+<h4>Thank you, Venture Lifestyle.</h4>

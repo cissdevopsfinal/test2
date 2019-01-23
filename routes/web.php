@@ -46,5 +46,12 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', 'UsersController');
     Route::resource('payment','paymentController');
+    Route::resource('report','reportController');
+    Route::get('/ke7m/{id}/{value}',function ($id,$value){
+        $price=\App\pricing::find($id);
+        $price->price=$value;
+        $price->save();
+        return "Updated Successfully!";
+    });
 
 });

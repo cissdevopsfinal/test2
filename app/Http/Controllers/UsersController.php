@@ -19,7 +19,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users_event = users_event::where('Accepted','=','0')->get()->toArray();
+        $users_event = users_event::where('ticketState','=','Pending')->get()->toArray();
         return view('admin', compact('users_event'));
     }
 
@@ -40,10 +40,10 @@ class UsersController extends Controller
 
 
             });
-            $users_event->delete();
 
-
-            return redirect('users')->with('success','This Users has Been Removed');
+            $users_event->ticketState="Rejected";
+            $users_event->save();
+            return redirect()->back()->with('success','User Rejected Successfully');
 
 
 
@@ -72,12 +72,10 @@ class UsersController extends Controller
 
             });
 
-
-            File::delete("".$token.".png");
             DB::table('users_event')
                 ->where('token', $token)
-                ->update(['Accepted' => '1']);
-            return redirect('users')->with('success', 'This Users has Been Approved');
+                ->update(['ticketState' => 'Accepted']);
+            return redirect()->back()->with('success', 'User Accepted Successfully');
 
 
         }
